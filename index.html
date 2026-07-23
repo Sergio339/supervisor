@@ -414,7 +414,7 @@
         }
 
         const user = userData.find(u => u.id && u.id.toString().toLowerCase() === input.toLowerCase());
-
+        console.log(user);
         if (user) {
             currentUserId = user.id;
             resultDiv.className = 'result-card';
