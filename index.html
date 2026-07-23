@@ -142,23 +142,26 @@
     <div id="result" class="hidden"></div>
 
     <div id="censusSection" class="hidden" style="margin-top: 20px;">
-    <hr>
-    <label>
-        <strong>Census House Number:</strong>
-        <!-- Hover i Button -->
-        <span class="tooltip-container">
-        <span class="info-icon">i</span>
-        <span class="tooltip-text">
-            <strong>Calculation Example:</strong><br>
-            • Previous Total: 150<br>
-            • Today's Count: 180<br>
-            • <strong>Post Value: 150 + 180 = 330</strong>
-        </span>
-        </span>
-    </label>
-    <br><br>
-    <input type="text" id="censusInput" placeholder="Enter Number...">
-    <br>
+        <hr>
+        <label>
+            <strong>Census House Number:</strong>
+            <!-- Hover i Button -->
+            <span class="tooltip-container">
+            <span class="info-icon">i</span>
+            <span class="tooltip-text">
+                <strong>Calculation Example:</strong><br>
+                • Previous Total: 150<br>
+                • Today's Count: 180<br>
+                • <strong>Post Value: 150 + 180 = 330</strong>
+                <span style="color: #ff6b6b; display: block; margin-top: 6px; font-weight: bold;">
+                *Note: Enter today's total value from all enumerators only. It will automatically be added to the total census houses.
+                </span>
+            </span>
+            </span>
+        </label>
+        <br><br>
+        <input type="text" id="censusInput" placeholder="Enter Number...">
+        <br>
     <button id="saveCensusBtn" style="background: var(--secondary);">Submit Entry</button>
     </div>
   </div>
