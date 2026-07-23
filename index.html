@@ -385,7 +385,7 @@
 
                 loadingEl.classList.add('hidden');
                 searchBox.classList.remove('hidden');
-                showStatus(`Loaded ${userData.length} users`, 'info');
+                // showStatus(`Loaded ${userData.length} users`, 'info');
             })
             .catch(err => {
                 console.error('Load error:', err);
@@ -437,7 +437,7 @@
             resultDiv.innerHTML = html;
             censusSection.classList.remove('hidden');
             censusInput.value = '';
-            showStatus(`Profile: ${user.name || user.id}`, 'info');
+            // showStatus(`Profile: ${user.name || user.id}`, 'info');
         } else {
             resultDiv.className = 'result-card error';
             resultDiv.innerHTML = `<span class="not-found">User ID "${input}" not found.</span>`;
