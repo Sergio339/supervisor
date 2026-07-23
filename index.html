@@ -379,8 +379,10 @@
             .then(data => {
                 if (Array.isArray(data)) {
                     userData = data;
+                    console.log(userData);
                 } else if (data && typeof data === 'object' && Array.isArray(data.data)) {
                     userData = data.data;
+                    console.log(userData);
                 } else {
                     throw new Error('Unexpected data format from GAS');
                 }
