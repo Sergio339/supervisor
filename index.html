@@ -170,8 +170,8 @@
 <body>
 <div class="container">
     <h2>
-        📋 Supervisor Module
-        <small>GAS</small>
+         Supervisor Module
+        <!-- <small>GAS</small> -->
     </h2>
 
     <!-- loading indicator -->
@@ -180,7 +180,7 @@
     <!-- search box -->
     <div id="searchBox" class="hidden">
         <input type="text" id="userInput" placeholder="Enter User ID (e.g. U001)">
-        <button onclick="searchUser()">🔍 Search Profile</button>
+        <button onclick="searchUser()">Search Profile</button>
     </div>
 
     <!-- profile result -->
@@ -189,7 +189,7 @@
     <!-- census section -->
     <div id="censusSection" class="hidden">
         <hr>
-        <div class="label-hint">🏠 Census House Number</div>
+        <div class="label-hint">Census House Number</div>
         <input type="text" id="censusInput" placeholder="e.g. H-12, 45/A">
         <button class="secondary" onclick="saveCensus()">✅ Submit Entry</button>
     </div>
@@ -198,8 +198,8 @@
     <div id="statusMessage" class="toast-message hidden"></div>
     <div id="errorDetail" class="error-detail hidden"></div>
 
-    <div class="debug-toggle" onclick="toggleDebug()">🛠 show raw data</div>
-    <pre id="debugRaw" style="display:none; background:#f2f4f6; padding:8px; border-radius:8px; font-size:0.7rem; text-align:left; overflow-x:auto; margin-top:10px;"></pre>
+    <!-- <div class="debug-toggle" onclick="toggleDebug()">🛠 show raw data</div> -->
+    <!-- <pre id="debugRaw" style="display:none; background:#f2f4f6; padding:8px; border-radius:8px; font-size:0.7rem; text-align:left; overflow-x:auto; margin-top:10px;"></pre> -->
 </div>
 
 <script>
@@ -323,16 +323,17 @@
         }
 
         const user = userData.find(u => u.id && u.id.toString().toLowerCase() === input.toLowerCase());
+        console.log(user);
 
         if (user) {
             currentUserId = user.id;
             resultDiv.className = '';
-            let html = `<p><strong>👤 Functionary:</strong> ${user.typeOfFunctionary || '—'}</p>
-                        <p><strong>📛 Name:</strong> ${user.name || '—'}</p>
-                        <p><strong>🏛️ District/M.Corp.:</strong> ${user.district || '—'}</p>
-                        <p><strong>📍 Sub-District:</strong> ${user.subDistrict || '—'}</p>`;
+            let html = `<p><strong> Functionary:</strong> ${user.typeOfFunctionary || '—'}</p>
+                        <p><strong> Name:</strong> ${user.name || '—'}</p>
+                        <p><strong> District/M.Corp.:</strong> ${user.district || '—'}</p>
+                        <p><strong> Sub-District:</strong> ${user.subDistrict || '—'}</p>`;
             if (user.town && user.town.toString().trim() !== '') {
-                html += `<p><strong>🏘️ Town:</strong> ${user.town}</p>`;
+                html += `<p><strong> Town:</strong> ${user.town}</p>`;
             }
             resultDiv.innerHTML = html;
             censusSection.classList.remove('hidden');
