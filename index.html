@@ -60,19 +60,20 @@
 <body>
   <div class="container">
     <h2>Supervisor Module</h2>
-        <div style="background:#f8f9fa; border-left:4px solid var(--primary); padding:12px; border-radius:10px; font-size:13px; text-align:left; margin-bottom:20px;">
-            <strong style="color:var(--primary);">📌 Instructions:</strong>
-            <ul style="margin:5px 0 0 0; padding-left:18px; line-height:1.4;">
-            <li><strong>Collect:</strong> Daily house totals from enumerators.</li>
-            <li><strong>Calculate:</strong> Add today's count to the previous cumulative total.</li>
-            <li><strong>Post:</strong> Submit the final combined sum below.</li>
-            </ul>
-        </div>
+
         <div id="loading">Loading data...</div>
     
         <div id="searchBox" class="hidden">
         <input type="text" id="userInput" placeholder="Enter User ID">
         <button id="searchBtn">Search Profile</button>
+            <div style="background:#f8f9fa; border-left:4px solid var(--primary); padding:12px; border-radius:10px; font-size:13px; text-align:left; margin-bottom:20px;">
+                <strong style="color:var(--primary);">📌 Instructions:</strong>
+                <ul style="margin:5px 0 0 0; padding-left:18px; line-height:1.4;">
+                <li><strong>Collect:</strong> Daily house totals from enumerators.</li>
+                <li><strong>Calculate:</strong> Add today's count to the previous cumulative total.</li>
+                <li><strong>Post:</strong> Submit the final combined sum below.</li>
+                </ul>
+            </div>
         </div>
     
     <div id="result" class="hidden"></div>
