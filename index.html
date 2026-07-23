@@ -414,19 +414,26 @@
         }
 
         const user = userData.find(u => u.id && u.id.toString().toLowerCase() === input.toLowerCase());
-        console.log(user);
         if (user) {
             currentUserId = user.id;
             resultDiv.className = 'result-card';
+            
+            // Get census value - check multiple possible field names
+            const censusValue = user.censusHouse || user.censusHouseNo || user.census || '';
+            const displayCensus = censusValue && censusValue.toString().trim() !== '' ? censusValue : '00';
+            
             let html = `
                 <p><strong>Functionary:</strong> ${user.typeOfFunctionary || '—'}</p>
                 <p><strong>Name:</strong> ${user.name || '—'}</p>
                 <p><strong>District / M.Corp.:</strong> ${user.district || '—'}</p>
                 <p><strong>Sub-District:</strong> ${user.subDistrict || '—'}</p>
+                <p><strong>Census House:</strong> ${displayCensus}</p>
             `;
+            
             if (user.town && user.town.toString().trim() !== '') {
                 html += `<p><strong>Town:</strong> ${user.town}</p>`;
             }
+            
             resultDiv.innerHTML = html;
             censusSection.classList.remove('hidden');
             censusInput.value = '';
