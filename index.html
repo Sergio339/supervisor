@@ -423,7 +423,7 @@
             resultDiv.className = 'result-card';
             
             // Get census value - check multiple possible field names
-            const censusValue = user.censusHouse || user.censusHouseNo || user.census || '';
+            const censusValue = user.censusNumber || user.censusHouseNo || user.census || '';
             const displayCensus = censusValue && censusValue.toString().trim() !== '' ? censusValue : '00';
             
             let html = `
