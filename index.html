@@ -3,203 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supervisor Module · GAS Direct</title>
+    <title>Supervisor Module</title>
     <style>
-        :root {
-            --primary: #4a90e2;
-            --secondary: #27ae60;
-            --bg: #f0f4f8;
-            --card: #ffffff;
-            --text: #2c3e50;
-        }
-        body {
+        /* ─── Professional Design – No Emojis, Clean & Minimal ─── */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f5f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            margin: 0;
+            padding: 20px;
+            color: #1e293b;
         }
+
         .container {
-            background: var(--card);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            width: 380px;
-            text-align: center;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 420px;
+            transition: all 0.2s ease;
         }
-        h2 {
-            color: var(--text);
-            margin-bottom: 20px;
+
+        /* Header */
+        .app-header {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e9edf2;
         }
-        h2 small {
-            font-size: 0.65rem;
-            background: #eef2f7;
-            padding: 2px 10px;
-            border-radius: 20px;
-            color: #3a5670;
-        }
-        input {
-            padding: 12px;
-            width: 90%;
-            margin-bottom: 15px;
-            border: 2px solid #e1e8ed;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            transition: 0.2s;
-            box-sizing: border-box;
-        }
-        input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-        }
-        button {
-            padding: 12px 25px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
+
+        .app-title {
+            font-size: 1.4rem;
             font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
+            letter-spacing: -0.02em;
+            color: #0b1a2e;
+        }
+
+        .app-badge {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #5e6f8d;
+            background: #edf2f7;
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.02em;
+        }
+
+        /* Loading */
+        .loading-state {
+            color: #5e6f8d;
+            font-size: 0.9rem;
+            padding: 24px 0 16px;
+            text-align: center;
+            font-weight: 450;
+        }
+
+        .loading-state.error {
+            color: #b33a3a;
+        }
+
+        /* Search section */
+        .search-section {
+            margin-top: 4px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
             font-size: 0.95rem;
+            font-weight: 450;
+            color: #1e293b;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            margin-bottom: 14px;
         }
-        button:hover {
-            background: #357abd;
-            transform: translateY(-2px);
+
+        .input-field:focus {
+            border-color: #2c6b9e;
+            box-shadow: 0 0 0 3px rgba(44, 107, 158, 0.12);
+            background: #ffffff;
         }
-        button.secondary {
-            background: var(--secondary);
+
+        .input-field::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
         }
-        button.secondary:hover {
-            background: #1e8b4c;
-        }
-        button:disabled {
-            opacity: 0.6;
-            transform: none !important;
-            cursor: not-allowed;
-        }
-        #result {
-            margin-top: 20px;
-            text-align: left;
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary);
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
             font-size: 0.95rem;
-        }
-        .hidden {
-            display: none !important;
-        }
-        #loading {
-            color: #555;
-            font-style: italic;
-            padding: 10px 0;
-        }
-        #censusSection {
-            margin-top: 20px;
-        }
-        hr {
+            font-weight: 500;
+            color: #ffffff;
+            background: #2c6b9e;
             border: none;
-            border-top: 2px dashed #dce3ec;
-            margin: 20px 0 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            letter-spacing: 0.01em;
+            width: 100%;
         }
-        .flex-row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
+
+        .btn:hover {
+            background: #1f4f77;
+            box-shadow: 0 4px 12px rgba(44, 107, 158, 0.2);
         }
-        .label-hint {
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: #1e7b4a;
+        }
+
+        .btn-secondary:hover {
+            background: #14633b;
+            box-shadow: 0 4px 12px rgba(30, 123, 74, 0.2);
+        }
+
+        /* Result card */
+        .result-card {
+            margin-top: 24px;
+            padding: 18px 20px;
+            background: #f8fafc;
+            border-radius: 14px;
+            border-left: 4px solid #2c6b9e;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #1e293b;
+            text-align: left;
+        }
+
+        .result-card.error {
+            border-left-color: #b33a3a;
+            background: #fdf5f5;
+        }
+
+        .result-card p {
+            margin-bottom: 4px;
+        }
+
+        .result-card strong {
+            font-weight: 600;
+            color: #0b1a2e;
+        }
+
+        .result-card .not-found {
+            color: #b33a3a;
+            font-weight: 500;
+        }
+
+        .result-card .hint-text {
+            color: #b37a2e;
+        }
+
+        /* Census section */
+        .census-section {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e9edf2;
+        }
+
+        .census-label {
             font-size: 0.9rem;
             font-weight: 500;
-            color: #1f2a3a;
+            color: #1e293b;
+            display: block;
+            margin-bottom: 8px;
         }
-        #result.error {
-            border-left-color: #e74c3c;
+
+        .census-section .input-field {
+            margin-bottom: 14px;
         }
+
+        /* Status messages */
         .toast-message {
             background: #1e2b3c;
             color: #f0f7ff;
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 30px;
             font-size: 0.85rem;
-            margin-top: 12px;
+            font-weight: 450;
+            margin-top: 16px;
             display: inline-block;
             max-width: 100%;
             word-break: break-word;
         }
+
         .toast-message.error-toast {
-            background: #b3403a;
-            color: white;
+            background: #b33a3a;
         }
+
         .toast-message.warning-toast {
             background: #b37a2e;
-            color: white;
         }
-        .debug-toggle {
-            margin-top: 15px;
-            font-size: 0.75rem;
-            color: #6a7a8e;
-            cursor: pointer;
-            text-decoration: underline dotted;
+
+        .toast-message.hidden {
+            display: none;
         }
+
+        /* Error detail box */
         .error-detail {
             font-size: 0.8rem;
-            background: #fde8e8;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-top: 10px;
+            background: #fdf5f5;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-top: 14px;
             color: #a93226;
             border: 1px solid #f5c6cb;
             text-align: left;
+            line-height: 1.5;
         }
+
+        .error-detail.hidden {
+            display: none;
+        }
+
         .error-detail strong {
             display: block;
             margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .error-detail .detail-meta {
+            margin-top: 6px;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* Utility */
+        .hidden {
+            display: none !important;
+        }
+
+        .mt-1 { margin-top: 8px; }
+        .mt-2 { margin-top: 16px; }
+        .w-100 { width: 100%; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container { padding: 28px 20px; }
+            .app-title { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h2>
-         Supervisor Module
-        <!-- <small>GAS</small> -->
-    </h2>
 
-    <!-- loading indicator -->
-    <div id="loading">⏳ Loading user data ...</div>
+    <!-- HEADER -->
+    <header class="app-header">
+        <span class="app-title">Supervisor</span>
+        <span class="app-badge">v1.0</span>
+    </header>
 
-    <!-- search box -->
-    <div id="searchBox" class="hidden">
-        <input type="text" id="userInput" placeholder="Enter User ID (e.g. U001)">
-        <button onclick="searchUser()">Search Profile</button>
+    <!-- LOADING -->
+    <div id="loading" class="loading-state">Loading user data ...</div>
+
+    <!-- SEARCH -->
+    <div id="searchBox" class="search-section hidden">
+        <input type="text" id="userInput" class="input-field" placeholder="Enter User ID (e.g. U001)">
+        <button class="btn" onclick="searchUser()">Search Profile</button>
     </div>
 
-    <!-- profile result -->
-    <div id="result" class="hidden"></div>
+    <!-- PROFILE RESULT -->
+    <div id="result" class="result-card hidden"></div>
 
-    <!-- census section -->
-    <div id="censusSection" class="hidden">
-        <hr>
-        <div class="label-hint">Census House Number</div>
-        <input type="text" id="censusInput" placeholder="e.g. H-12, 45/A">
-        <button class="secondary" onclick="saveCensus()">✅ Submit Entry</button>
+    <!-- CENSUS SECTION -->
+    <div id="censusSection" class="census-section hidden">
+        <label class="census-label">Census House Number</label>
+        <input type="text" id="censusInput" class="input-field" placeholder="e.g. H-12, 45/A">
+        <button class="btn btn-secondary" onclick="saveCensus()">Submit Entry</button>
     </div>
 
-    <!-- status / error messages -->
+    <!-- STATUS & ERROR -->
     <div id="statusMessage" class="toast-message hidden"></div>
     <div id="errorDetail" class="error-detail hidden"></div>
 
-    <!-- <div class="debug-toggle" onclick="toggleDebug()">🛠 show raw data</div> -->
-    <!-- <pre id="debugRaw" style="display:none; background:#f2f4f6; padding:8px; border-radius:8px; font-size:0.7rem; text-align:left; overflow-x:auto; margin-top:10px;"></pre> -->
 </div>
 
 <script>
@@ -207,10 +310,10 @@
     const GAS_URL = "https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwIUiDZr5e4AkFp3RYSqfATzsU7uxc9_S3ssKic2SzxKxIi8DM0TLz9_2J30TXSQq8/exec");
 
     // ─── STATE ────────────────────────────────────────────────────────
-    let userData = [];             // full user list from GAS
-    let currentUserId = "";        // id of selected user
+    let userData = [];
+    let currentUserId = "";
 
-    // ─── DOM refs ────────────────────────────────────────────────────
+    // ─── DOM REFS ────────────────────────────────────────────────────
     const loadingEl = document.getElementById('loading');
     const searchBox = document.getElementById('searchBox');
     const userInput = document.getElementById('userInput');
@@ -219,7 +322,6 @@
     const censusInput = document.getElementById('censusInput');
     const statusMsg = document.getElementById('statusMessage');
     const errorDetail = document.getElementById('errorDetail');
-    const debugRaw = document.getElementById('debugRaw');
 
     // ─── HELPERS ──────────────────────────────────────────────────────
     function showStatus(text, type = 'info') {
@@ -242,11 +344,10 @@
     function showErrorDetail(title, message, details = '') {
         errorDetail.classList.remove('hidden');
         errorDetail.innerHTML = `
-            <strong>❌ ${title}</strong>
+            <strong>${title}</strong>
             <div>${message}</div>
-            ${details ? `<div style="margin-top:6px;font-size:0.75rem;opacity:0.8;">${details}</div>` : ''}
+            ${details ? `<div class="detail-meta">${details}</div>` : ''}
         `;
-        // auto hide after 12s
         clearTimeout(errorDetail._timer);
         errorDetail._timer = setTimeout(() => {
             errorDetail.classList.add('hidden');
@@ -257,18 +358,10 @@
         errorDetail.classList.add('hidden');
     }
 
-    function toggleDebug() {
-        if (debugRaw.style.display === 'none') {
-            debugRaw.style.display = 'block';
-            debugRaw.textContent = JSON.stringify(userData, null, 2);
-        } else {
-            debugRaw.style.display = 'none';
-        }
-    }
-
-    // ─── LOAD USER DATA FROM GAS (GET) ─────────────────────────────
+    // ─── LOAD USER DATA ──────────────────────────────────────────────
     function loadUserData() {
-        loadingEl.classList.remove('hidden');
+        loadingEl.classList.remove('hidden', 'error');
+        loadingEl.textContent = 'Loading user data ...';
         searchBox.classList.add('hidden');
         resultDiv.classList.add('hidden');
         censusSection.classList.add('hidden');
@@ -292,14 +385,12 @@
 
                 loadingEl.classList.add('hidden');
                 searchBox.classList.remove('hidden');
-                showStatus(`✅ Loaded ${userData.length} users`, 'info');
-                debugRaw.textContent = JSON.stringify(userData, null, 2);
-                debugRaw.style.display = 'none';
+                showStatus(`Loaded ${userData.length} users`, 'info');
             })
             .catch(err => {
                 console.error('Load error:', err);
-                loadingEl.textContent = '❌ Error loading data.';
-                loadingEl.style.color = '#c0392b';
+                loadingEl.textContent = 'Error loading data.';
+                loadingEl.classList.add('error');
                 showStatus('Failed to load user data', 'error');
                 showErrorDetail(
                     'Data Load Failed',
@@ -313,41 +404,42 @@
     window.searchUser = function() {
         const input = userInput.value.trim();
         resultDiv.classList.remove('hidden');
-        resultDiv.className = '';
+        resultDiv.className = 'result-card';
         hideErrorDetail();
 
         if (!input) {
-            resultDiv.innerHTML = '<span style="color:#e67e22;">Please enter a User ID.</span>';
+            resultDiv.innerHTML = '<span class="hint-text">Please enter a User ID.</span>';
             censusSection.classList.add('hidden');
             return;
         }
 
         const user = userData.find(u => u.id && u.id.toString().toLowerCase() === input.toLowerCase());
-        console.log(user);
 
         if (user) {
             currentUserId = user.id;
-            resultDiv.className = '';
-            let html = `<p><strong> Functionary:</strong> ${user.typeOfFunctionary || '—'}</p>
-                        <p><strong> Name:</strong> ${user.name || '—'}</p>
-                        <p><strong> District/M.Corp.:</strong> ${user.district || '—'}</p>
-                        <p><strong> Sub-District:</strong> ${user.subDistrict || '—'}</p>`;
+            resultDiv.className = 'result-card';
+            let html = `
+                <p><strong>Functionary:</strong> ${user.typeOfFunctionary || '—'}</p>
+                <p><strong>Name:</strong> ${user.name || '—'}</p>
+                <p><strong>District / M.Corp.:</strong> ${user.district || '—'}</p>
+                <p><strong>Sub-District:</strong> ${user.subDistrict || '—'}</p>
+            `;
             if (user.town && user.town.toString().trim() !== '') {
-                html += `<p><strong> Town:</strong> ${user.town}</p>`;
+                html += `<p><strong>Town:</strong> ${user.town}</p>`;
             }
             resultDiv.innerHTML = html;
             censusSection.classList.remove('hidden');
             censusInput.value = '';
-            showStatus(`🔍 Profile: ${user.name || user.id}`, 'info');
+            showStatus(`Profile: ${user.name || user.id}`, 'info');
         } else {
-            resultDiv.className = 'error';
-            resultDiv.innerHTML = `<span style="color:#e74c3c;">❌ User ID "${input}" not found.</span>`;
+            resultDiv.className = 'result-card error';
+            resultDiv.innerHTML = `<span class="not-found">User ID "${input}" not found.</span>`;
             censusSection.classList.add('hidden');
             showStatus('User not found', 'warning');
         }
     };
 
-    // ─── SAVE CENSUS DATA (POST) ─────────────────────────────────────
+    // ─── SAVE CENSUS DATA ────────────────────────────────────────────
     window.saveCensus = function() {
         const houseNo = censusInput.value.trim();
         if (!houseNo) {
@@ -365,15 +457,14 @@
             houseNo: houseNo
         };
 
-        const btn = document.querySelector('#censusSection .secondary');
+        const btn = document.querySelector('#censusSection .btn-secondary');
         const originalText = btn.textContent;
         btn.disabled = true;
-        btn.textContent = '⏳ Saving...';
+        btn.textContent = 'Saving ...';
         hideErrorDetail();
 
-        // Add a timeout to detect network hangs
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
 
         fetch(GAS_URL, {
             method: 'POST',
@@ -384,7 +475,6 @@
             .then(res => {
                 clearTimeout(timeoutId);
                 if (!res.ok) {
-                    // Try to get error text from response
                     return res.text().then(text => {
                         let errorMsg = `HTTP ${res.status} ${res.statusText}`;
                         try {
@@ -402,7 +492,7 @@
                 btn.disabled = false;
                 btn.textContent = originalText;
                 if (result && result.success === true) {
-                    showStatus('✅ Census data saved successfully!', 'info');
+                    showStatus('Census data saved successfully.', 'info');
                     censusInput.value = '';
                     userInput.value = '';
                     resultDiv.classList.add('hidden');
@@ -411,9 +501,9 @@
                     hideErrorDetail();
                 } else {
                     const msg = result?.message || 'Unknown error from GAS';
-                    showStatus('❌ ' + msg, 'error');
+                    showStatus('Error: ' + msg, 'error');
                     showErrorDetail(
-                        'Save Failed (GAS Response)',
+                        'Save Failed',
                         msg,
                         'The Google Apps Script returned an error status.'
                     );
@@ -426,7 +516,6 @@
 
                 console.error('Save error:', err);
 
-                // Detailed error analysis
                 let errorTitle = 'Network Error';
                 let errorMessage = 'Failed to connect to Google Apps Script.';
                 let errorDetails = '';
@@ -438,7 +527,7 @@
                 } else if (err.message.includes('Failed to fetch')) {
                     errorTitle = 'Connection Failed';
                     errorMessage = 'Cannot reach the Google Apps Script endpoint.';
-                    errorDetails = `Possible causes:\n• CORS not enabled on the GAS deployment\n• Incorrect script URL: ${GAS_URL}\n• Network blockage (firewall/VPN)\n• GAS script is not published or deployed`;
+                    errorDetails = 'Possible causes:\n- CORS not enabled on the GAS deployment\n- Incorrect script URL\n- Network blockage (firewall/VPN)\n- GAS script is not published or deployed';
                 } else if (err.message.includes('HTTP')) {
                     errorTitle = 'Server Error';
                     errorMessage = err.message;
@@ -449,11 +538,9 @@
                     errorDetails = 'Check the browser console for more details.';
                 }
 
-                showStatus(`❌ ${errorTitle}`, 'error');
+                showStatus('Error: ' + errorTitle, 'error');
                 showErrorDetail(errorTitle, errorMessage, errorDetails);
-
-                // Also show a more user-friendly alert
-                alert(`❌ ${errorTitle}\n\n${errorMessage}\n\n${errorDetails.replace(/\\n/g, '\n')}`);
+                alert(`${errorTitle}\n\n${errorMessage}\n\n${errorDetails.replace(/\\n/g, '\n')}`);
             });
     };
 
@@ -476,8 +563,8 @@
         loadUserData();
     });
 
-    // expose for manual retry
     window.loadUserData = loadUserData;
 </script>
+
 </body>
 </html>
